@@ -1,0 +1,15 @@
+### ENVIRONMENTS
+.env
+
+### PYTHON
+__pycache__/
+.pytest_cache
+*.py[cod]
+*$py.class
+
+### OUT
+state.json
+
+### MISC
+.DS_Store
+*.pem

@@ -1,0 +1,4 @@
+json
+pytest
+python-dotenv
+requests
