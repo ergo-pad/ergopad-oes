@@ -1,5 +1,13 @@
 {
     "version": "1.0",
-    "cool_down": 600,
-	"services": []
+    "cool_down": 5,
+    "error_threshold": 0.5,
+	"services": [
+        {
+            "url": "https://api.ergopad.io/asset/price/ergopad",
+            "http_method": "GET",
+            "response_matcher": "status_code",
+            "latency": 100
+        }
+    ]
 }

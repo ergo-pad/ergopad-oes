@@ -14,6 +14,13 @@ def test_config_reader():
 
     assert(config_reader.get_config()["version"] == "1.0")
     assert(type(config_reader.get_config()["cool_down"]) == int)
+    assert(
+        0 < config_reader.get_config()["error_threshold"] and
+        config_reader.get_config()["error_threshold"] <= 1
+    )
+    assert(type(config_reader.get_config()["services"]) == list)
+    for service in config_reader.get_config()["services"]:
+        ConfigReader.validate_service(service)
 
 
 def test_state_store():
@@ -34,8 +41,9 @@ def test_state_store():
     state_store.add_violation(0, "error")
     assert("error" in state_store.get_config()["services"][0]["violations"])
     state_store.remove_violation(0, "latency")
-    assert("latency" not in state_store.get_config()
-           ["services"][0]["violations"])
+    assert(
+        "latency" not in state_store.get_config()["services"][0]["violations"]
+    )
 
 
 def test_stats():
