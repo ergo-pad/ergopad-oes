@@ -1,13 +1,55 @@
 {
     "version": "1.0",
-    "cool_down": 5,
+    "cool_down": 30,
     "error_threshold": 0.5,
 	"services": [
         {
             "url": "https://api.ergopad.io/asset/price/ergopad",
             "http_method": "GET",
             "response_matcher": "status_code",
-            "latency": 100
+            "latency": 1000
+        },
+        {
+            "url": "https://api.ergopad.io/blockchain/tokenomics/d71693c49a84fbbecd4908c94813b46514b18b67a99952dc1e6e4791556de413",
+            "http_method": "GET",
+            "response_matcher": "status_code",
+            "latency": 1000
+        },
+        {
+            "url": "https://api.ergopad.io/projects/",
+            "http_method": "GET",
+            "response_matcher": "status_code",
+            "latency": 1000
+        },
+        {
+            "url": "https://api.ergopad.io/whitelist/events",
+            "http_method": "GET",
+            "response_matcher": "status_code",
+            "latency": 1000
+        },
+        {
+            "url": "https://api.ergopad.io/contribution/events",
+            "http_method": "GET",
+            "response_matcher": "status_code",
+            "latency": 1000
+        },
+        {
+            "url": "https://api.ergopad.io/staking/status/",
+            "http_method": "GET",
+            "response_matcher": "status_code",
+            "latency": 1000
+        },
+        {
+            "url": "https://api.ergopad.io/staking/paideia/status/",
+            "http_method": "GET",
+            "response_matcher": "status_code",
+            "latency": 1000
+        },
+        {
+            "url": "https://api.ergopad.io/staking/egiov2/status/",
+            "http_method": "GET",
+            "response_matcher": "status_code",
+            "latency": 1000
         }
     ]
 }
