@@ -50,9 +50,9 @@ def price_chart_matcher(resp: Response, config):
     try:
         timestamp = time.time()
         current = resp.json()
-        last = QStore.get("price_chart_matcher")
+        last = store.get("price_chart_matcher")
         if not last:
-            QStore.set(
+            store.set(
                 "price_chart_matcher",
                 {
                     "timestamp": timestamp,
@@ -64,7 +64,7 @@ def price_chart_matcher(resp: Response, config):
         if (len(deepdiff.DeepDiff(last["data"], current).keys()) == 0) and (last["timestamp"] + THRESHOLD < timestamp):
             return False
 
-        QStore.set(
+        store.set(
             "price_chart_matcher",
             {
                 "timestamp": timestamp,
