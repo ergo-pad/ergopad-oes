@@ -1,7 +1,5 @@
 deepdiff
 discord
-json
-logging
 pytest
 python-dotenv
 requests
