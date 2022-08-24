@@ -1,5 +1,6 @@
 # Operational Excellence Foundations
 ### ErgoPad OES
+![Build Test](https://github.com/ergo-pad/ergopad-oes/actions/workflows/build_test.yml/badge.svg?branch=dev)
 
 ## Problem Statement
 The ErgoPad website works most of the time. We need to increase availability of our services and reduce downtime. For this we need a proper health check and metrics service for the website with support for notifications.
