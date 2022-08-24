@@ -7,7 +7,7 @@
             "url": "https://api.ergopad.io/asset/price/ergopad",
             "http_method": "GET",
             "response_matcher": "status_code",
-            "latency": 2000
+            "latency": 1000
         },
         {
             "url": "https://api.ergopad.io/blockchain/tokenomics/d71693c49a84fbbecd4908c94813b46514b18b67a99952dc1e6e4791556de413",
@@ -19,19 +19,19 @@
             "url": "https://api.ergopad.io/projects/",
             "http_method": "GET",
             "response_matcher": "status_code",
-            "latency": 2000
+            "latency": 1000
         },
         {
             "url": "https://api.ergopad.io/whitelist/events",
             "http_method": "GET",
             "response_matcher": "status_code",
-            "latency": 2000
+            "latency": 1000
         },
         {
             "url": "https://api.ergopad.io/contribution/events",
             "http_method": "GET",
             "response_matcher": "status_code",
-            "latency": 2000
+            "latency": 1000
         },
         {
             "url": "https://api.ergopad.io/staking/status/",
@@ -50,6 +50,12 @@
             "http_method": "GET",
             "response_matcher": "status_code",
             "latency": 2000
+        },
+        {
+            "url": "https://api.ergopad.io/asset/price/chart/ergopad_sigusd?stepSize=1&stepUnit=h",
+            "http_method": "GET",
+            "response_matcher": "price_chart_matcher",
+            "latency": 1000
         }
     ]
 }
