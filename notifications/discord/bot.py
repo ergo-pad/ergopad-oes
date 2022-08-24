@@ -1,11 +1,17 @@
 import discord
 import dotenv
+import logging
 import os
 import queue
 
 from discord.ext import tasks
 
 dotenv.load_dotenv()
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    level=logging.INFO,
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 
 channel_filter = (int(os.getenv("DISCORD_CHANNEL_ID")),)
 client = discord.Client(intents=discord.Intents.default())
@@ -15,6 +21,7 @@ message_q = queue.Queue()
 
 @tasks.loop(seconds=30)
 async def handler():
+    logging.info("bot handler checking for new events")
     while not message_q.empty():
         message = message_q.get()
         for channel in client.get_all_channels():
@@ -22,13 +29,16 @@ async def handler():
                 continue
             try:
                 await channel.send(message)
-            except:
-                pass
+            except Exception as e:
+                logging.error(e)
 
 
 @client.event
 async def on_ready():
-    handler.start()
+    try:
+        handler.start()
+    except Exception as e:
+        logging.error(e)
 
 
 # @client.event

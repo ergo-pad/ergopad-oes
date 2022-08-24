@@ -1,5 +1,12 @@
-import json
 import copy
+import json
+import logging
+
+logging.basicConfig(
+    format='%(asctime)s %(levelname)-8s %(message)s',
+    level=logging.INFO,
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 
 
 class QStore:
@@ -20,19 +27,19 @@ class StateStore:
         self.path = path
         try:
             self.file = open(path, "r")
-        except:
-            # file not found
+        except Exception as e:
             open(path, 'w').close()
             self.file = open(path, "r")
+            logging.error(e)
         try:
             self.state = json.load(self.file)
-        except:
-            # empty file
+        except Exception as e:
             self.state = {
                 "version": "1.0",
                 "services": []
             }
             self.flush()
+            logging.error(e)
 
     def get_config(self):
         return copy.deepcopy(self.state)
