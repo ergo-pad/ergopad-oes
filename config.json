@@ -1,6 +1,6 @@
 {
     "version": "1.0",
-    "cool_down": 120,
+    "cool_down": 300,
     "error_threshold": 0.5,
 	"services": [
         {
@@ -56,6 +56,44 @@
             "http_method": "GET",
             "response_matcher": "price_chart_matcher",
             "latency": 1000
+        },
+        {
+            "url": "https://api.ergopad.io/asset/balances/",
+            "http_method": "POST",
+            "payload": {
+                "addresses": [
+                  "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss"
+                ]
+            },
+            "response_matcher": "types",
+            "response": {
+                "addresses": {},
+                "total": 1.2,
+                "price": 3.1
+            },
+            "latency": 2000
+        },
+        {
+            "url": "https://api.ergopad.io/vesting/v2/",
+            "http_method": "POST",
+            "payload": {
+                "addresses": [
+                  "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss"
+                ]
+            },
+            "response_matcher": "non_empty",
+            "latency": 2000
+        },
+        {
+            "url": "https://api.ergopad.io/staking/staked-all/",
+            "http_method": "POST",
+            "payload": {
+                "addresses": [
+                  "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss"
+                ]
+            },
+            "response_matcher": "non_empty",
+            "latency": 2000
         }
     ]
 }

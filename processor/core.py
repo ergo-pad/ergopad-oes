@@ -43,12 +43,12 @@ class OpsProcessor:
                     res = requests.request(
                         http_method,
                         url=url,
-                        data=service["payload"] if "payload" in service else None,
-                        timeout=5,
+                        json=service["payload"] if "payload" in service else None,
+                        timeout=10,
                     )
                     end_time = time.time()
 
-                    error = (not matcher(res, service))
+                    error = int(not matcher(res, service))
                     current_latency = int((end_time - start_time) * 1000)
                     self.stats.add_error_data_point(url, http_method, error)
                     self.stats.add_latency_data_point(

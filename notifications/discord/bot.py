@@ -1,5 +1,6 @@
 import discord
 import dotenv
+import json
 import logging
 import os
 import queue
@@ -31,6 +32,32 @@ async def handler():
                 await channel.send(message)
             except Exception as e:
                 logging.error(e)
+
+
+@tasks.loop(hours=24)
+async def daily_reporter():
+    logging.info("bot generating daily state report")
+    try:
+        fp = open("state.json", "r")
+        state = json.load(fp)
+        message = f"""```
+------------------
+Daily Issue Report
+------------------
+
+state.json
+{json.dumps(state, indent=4)}
+
+[Operational Excellence Services]
+```
+"""
+        for channel in client.get_all_channels():
+            if channel.id not in channel_filter:
+                continue
+            await channel.send(message)
+
+    except Exception as e:
+        logging.error(e)
 
 
 @client.event

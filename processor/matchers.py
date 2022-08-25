@@ -36,7 +36,20 @@ def types(resp: Response, config):
             if type(expected[key]) != type(current[key]):
                 return False
         return True
-    except:
+    except Exception as e:
+        return False
+
+
+def non_empty(resp: Response, config):
+    try:
+        if not resp.ok:
+            return False
+        data = resp.json()
+        if type(data) == list:
+            return len(data) > 0
+        else:
+            return len(data.keys()) > 0
+    except Exception as e:
         return False
 
 
@@ -48,6 +61,8 @@ store = QStore()
 def price_chart_matcher(resp: Response, config):
     THRESHOLD = 1800
     try:
+        if not resp.ok:
+            return False
         timestamp = time.time()
         current = resp.json()
         last = store.get("price_chart_matcher")
@@ -80,5 +95,6 @@ matcher_map = {
     "status_code": status_code,
     "types": types,
     "exact": exact,
+    "non_empty": non_empty,
     "price_chart_matcher": price_chart_matcher
 }
