@@ -4,8 +4,10 @@ import json
 import logging
 import os
 import queue
+import time
 
 from discord.ext import tasks
+from storage.store import QStore
 
 dotenv.load_dotenv()
 logging.basicConfig(
@@ -34,7 +36,7 @@ async def handler():
                 logging.error(e)
 
 
-@tasks.loop(hours=24)
+@tasks.loop(hours=20)
 async def daily_reporter():
     logging.info("bot generating daily state report")
     try:
@@ -64,6 +66,7 @@ state.json
 async def on_ready():
     try:
         handler.start()
+        daily_reporter.start()
     except Exception as e:
         logging.error(e)
 
@@ -74,10 +77,19 @@ async def on_ready():
 
 
 class DiscordBot:
+    BUFFER = 60 * 60 * 12
+
     def __init__(self):
         self.client = client
+        self.store = QStore()
 
     def send_message(self, service: dict, event: str):
+        last_emit = self.store.get(
+            (service["url"], service["http_method"], event)
+        )
+        if last_emit and (last_emit + DiscordBot.BUFFER > time.time()):
+            return
+
         event_text = event
         if event == "error":
             event_text = "error rates"
@@ -91,6 +103,10 @@ Service: [{service["http_method"]}] {service["url"]} is experiencing high {event
 ```
 """
         message_q.put(message)
+        self.store.set(
+            (service["url"], service["http_method"], event),
+            time.time()
+        )
 
     def start(self):
         client.run(os.getenv("DISCORD_BOT_TOKEN"))

@@ -36,7 +36,7 @@ def types(resp: Response, config):
             if type(expected[key]) != type(current[key]):
                 return False
         return True
-    except Exception as e:
+    except:
         return False
 
 
@@ -49,7 +49,7 @@ def non_empty(resp: Response, config):
             return len(data) > 0
         else:
             return len(data.keys()) > 0
-    except Exception as e:
+    except:
         return False
 
 

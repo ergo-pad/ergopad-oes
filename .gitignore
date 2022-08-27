@@ -9,6 +9,7 @@ __pycache__/
 
 ### OUT
 state.json
+nohup.out
 
 ### MISC
 .DS_Store
