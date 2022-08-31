@@ -37,19 +37,19 @@
             "url": "https://api.ergopad.io/staking/status/",
             "http_method": "GET",
             "response_matcher": "status_code",
-            "latency": 2000
+            "latency": 3000
         },
         {
             "url": "https://api.ergopad.io/staking/paideia/status/",
             "http_method": "GET",
             "response_matcher": "status_code",
-            "latency": 2000
+            "latency": 3000
         },
         {
             "url": "https://api.ergopad.io/staking/egiov2/status/",
             "http_method": "GET",
             "response_matcher": "status_code",
-            "latency": 2000
+            "latency": 3000
         },
         {
             "url": "https://api.ergopad.io/asset/price/chart/ergopad_sigusd?stepSize=1&stepUnit=h",

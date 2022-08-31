@@ -42,6 +42,11 @@ async def daily_reporter():
     try:
         fp = open("state.json", "r")
         state = json.load(fp)
+        filtered_services = []
+        for service in state["services"]:
+            if len(service["violations"]) != 0:
+                filtered_services.append(service)
+        state["services"] = filtered_services
         message = f"""```
 ------------------
 Daily Issue Report
