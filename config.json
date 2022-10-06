@@ -112,62 +112,11 @@
             "latency": 4000
         },
         {
-            "url": "https://api.ergopad.io/staking/unstake/",
-            "http_method": "POST",
-            "payload": {
-                "stakeBox": "b27f9779d534da40d9ebe8835024233b3b74538eea80b171d7d912e93edaaadb",
-                "amount": 10.66,
-                "address": "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss",
-                "utxos":[],
-                "txFormat":"eip-12",
-                "addresses": [
-                    "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss",
-                    "9hZHmXp2KZvqAKnwFfpyjmdTXN5HgGdtuyctU9nwo4EJn7feXWr"
-                ]
-            },
-            "response_matcher": "status_code",
-            "latency": 4000
-        },
-        {
             "url": "https://api.ergopad.io/staking/paideia/stake/",
             "http_method": "POST",
             "payload": {
                 "wallet": "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss",
                 "amount": 212.426,
-                "utxos": [],
-                "txFormat": "eip-12",
-                "addresses": [
-                    "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss",
-                    "9hZHmXp2KZvqAKnwFfpyjmdTXN5HgGdtuyctU9nwo4EJn7feXWr"
-                ]
-            },
-            "response_matcher": "status_code",
-            "latency": 4000
-        },
-        {
-            "url": "https://api.ergopad.io/staking/paideia/addstake/",
-            "http_method": "POST",
-            "payload": {
-                "stakeBox": "f48cc41bdfa43903879ec8edc29814f116b33cb40bc5a906261bc5a3f8acf894",
-                "amount": 212.426,
-                "address": "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss",
-                "utxos": [],
-                "txFormat": "eip-12",
-                "addresses": [
-                    "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss",
-                    "9hZHmXp2KZvqAKnwFfpyjmdTXN5HgGdtuyctU9nwo4EJn7feXWr"
-                ]
-            },
-            "response_matcher": "status_code",
-            "latency": 4000
-        },
-        {
-            "url": "https://api.ergopad.io/staking/paideia/unstake/",
-            "http_method": "POST",
-            "payload": { 
-                "stakeBox": "f48cc41bdfa43903879ec8edc29814f116b33cb40bc5a906261bc5a3f8acf894",
-                "amount": 51.8191,
-                "address": "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss", 
                 "utxos": [],
                 "txFormat": "eip-12",
                 "addresses": [
