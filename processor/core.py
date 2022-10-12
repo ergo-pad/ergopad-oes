@@ -39,16 +39,21 @@ class OpsProcessor:
                 matcher = matcher_map[service["response_matcher"]]
                 latency = service["latency"]
                 try:
+                    error = False
+
                     start_time = time.time()
-                    res = requests.request(
-                        http_method,
-                        url=url,
-                        json=service["payload"] if "payload" in service else None,
-                        timeout=10,
-                    )
+                    if matcher == matcher_map["utxo_executor"]:
+                        error = (not matcher(None, service))
+                    else:
+                        res = requests.request(
+                            http_method,
+                            url=url,
+                            json=service["payload"] if "payload" in service else None,
+                            timeout=10,
+                        )
+                        error = int(not matcher(res, service))
                     end_time = time.time()
 
-                    error = int(not matcher(res, service))
                     current_latency = int((end_time - start_time) * 1000)
                     self.stats.add_error_data_point(url, http_method, error)
                     self.stats.add_latency_data_point(

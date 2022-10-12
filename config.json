@@ -142,6 +142,36 @@
             },
             "response_matcher": "status_code",
             "latency": 4000
+        },
+        {
+            "url": "https://api.ergopad.io/staking/unstake/",
+            "http_method": "POST",
+            "payload": {
+                "method": "ergopad_unstake",
+                "address": "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss"
+            },
+            "response_matcher": "utxo_executor",
+            "latency": 6000
+        },
+        {
+            "url": "https://api.ergopad.io/staking/paideia/unstake/",
+            "http_method": "POST",
+            "payload": {
+                "method": "paideia_unstake",
+                "address": "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss"
+            },
+            "response_matcher": "utxo_executor",
+            "latency": 6000
+        },
+        {
+            "url": "https://api.ergopad.io/staking/paideia/addstake/",
+            "http_method": "POST",
+            "payload": {
+                "method": "paideia_addstake",
+                "address": "9i6UmaoJKWHgWkuq1EJUoYu2hrkRkxAYwQjDotHRHfGrBo16Rss"
+            },
+            "response_matcher": "utxo_executor",
+            "latency": 6000
         }
     ]
 }

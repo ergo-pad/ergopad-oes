@@ -4,7 +4,7 @@ import time
 from requests import Response
 
 from storage.store import QStore
-
+from processor.utxo_executor import ergopad_unstake, paideia_unstake, paideia_addstake
 
 # DEFAULT MATCHERS
 
@@ -91,10 +91,24 @@ def price_chart_matcher(resp: Response, config):
         return False
 
 
+def utxo_executor(_, config):
+    try:
+        if config["payload"]["method"] == "ergopad_unstake":
+            return ergopad_unstake(config["payload"]["address"])
+        if config["payload"]["method"] == "paideia_unstake":
+            return paideia_unstake(config["payload"]["address"])
+        if config["payload"]["method"] == "paideia_addstake":
+            return paideia_addstake(config["payload"]["address"])
+        return True
+    except:
+        return False
+
+
 matcher_map = {
     "status_code": status_code,
     "types": types,
     "exact": exact,
     "non_empty": non_empty,
-    "price_chart_matcher": price_chart_matcher
+    "price_chart_matcher": price_chart_matcher,
+    "utxo_executor": utxo_executor
 }
